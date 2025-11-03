@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    font-family: 'Cairo', system-ui, sans-serif;
+    background-color: #020617;
+  }
+
+  body {
+    @apply bg-brand-dark text-white antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-magenta/80 text-white;
+  }
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/cairo/v22/SLXGc1nY6HkvalJpkB5vGYs.woff2') format('woff2');
+}
