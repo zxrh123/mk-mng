@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "mikrotik-ai-platform"
+version = "0.1.0"
+description = "AI-driven MikroTik RouterOS management platform"
+authors = ["AI System Architect <ai@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "app" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.0"
+uvicorn = { extras = ["standard"], version = "^0.30.1" }
+python-dotenv = "^1.0.1"
+pydantic = "^2.8.2"
+pydantic-settings = "^2.3.4"
+sqlalchemy = { version = "^2.0.31", extras = ["asyncio"] }
+asyncpg = "^0.29.0"
+alembic = "^1.13.2"
+loguru = "^0.7.2"
+tenacity = "^8.5.0"
+httpx = "^0.27.0"
+librouteros = "^3.3.2"
+paramiko = "^3.4.0"
+google-generativeai = "^0.6.0"
+openai = "^1.35.10"
+beautifulsoup4 = "^4.12.3"
+aiohttp = "^3.10.2"
+redis = "^5.0.7"
+orjson = "^3.10.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+pytest-asyncio = "^0.23.8"
+httpx = { version = "^0.27.0", extras = ["cli"] }
+
+[build-system]
+requires = ["poetry>=1.8.3"]
+build-backend = "poetry.core.masonry.api"
