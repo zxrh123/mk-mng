@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     backend_cors_origins: List[str] = Field(default_factory=lambda: ["*"])
 
     # Database
-    postgres_host: str = Field(default="localhost")
+    postgres_host: str = Field(default="sqlite")
     postgres_port: int = Field(default=5432)
     postgres_user: str = Field(default="mikrotik_ai")
     postgres_password: SecretStr = Field(default=SecretStr("changeme"))
@@ -76,10 +76,13 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
+        if self.postgres_host.lower() == "sqlite":
+            return "sqlite+aiosqlite:///./app.db"
+
         password = self.postgres_password.get_secret_value()
         return (
             f"postgresql+asyncpg://{self.postgres_user}:{password}"
-            f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}?sslmode={self.postgres_sslmode}"
+            f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
         )
 
     @field_validator("backend_cors_origins", "routeros_hosts", "knowledge_sources", mode="before")

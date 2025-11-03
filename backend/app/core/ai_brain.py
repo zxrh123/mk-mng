@@ -155,7 +155,7 @@ class AIBrain:
             }
 
     async def _log_chat(self, session: AsyncSession, session_id: str, sender: str, content: str, metadata: Optional[dict] = None) -> None:
-        message = ChatMessage(session_id=session_id, sender=sender, content=content, metadata=metadata or {})
+        message = ChatMessage(session_id=session_id, sender=sender, content=content, meta=metadata or {})
         session.add(message)
         await session.commit()
 
